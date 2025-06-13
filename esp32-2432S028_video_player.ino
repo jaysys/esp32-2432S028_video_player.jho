@@ -148,7 +148,6 @@ void mjpegPlayFromSDCard(char *mjpegFilename)
 {
     Serial.printf("Opening %s\n", mjpegFilename);
     File mjpegFile = SD.open(mjpegFilename, "r");
-    Serial.printf("SD.open passed\n", mjpegFilename);
 
     if (!mjpegFile || mjpegFile.isDirectory())
     {
