@@ -8,7 +8,8 @@
 #define SD_MOSI 23
 #define SD_SCK 18
 #define BOOT_PIN 0
-#define GFX_SPEED 40000000L
+#define DISPLAY_SPEED 80000000L
+#define SD_SPEED 80000000L
 
 const char *MJPEG_FOLDER = "/mjpeg";
 
@@ -57,7 +58,7 @@ void setup()
 
     // Display initialization
     Serial.println("Display initialization");
-    if (!gfx->begin(GFX_SPEED))
+    if (!gfx->begin(DISPLAY_SPEED))
     {
         Serial.println("Display initialization failed!");
         while (true)
@@ -70,7 +71,7 @@ void setup()
 
     // SD card initialization
     Serial.println("SD Card initialization");
-    if (!SD.begin(SD_CS, sd_spi, 80000000, "/sd"))
+    if (!SD.begin(SD_CS, sd_spi, SD_SPEED, "/sd"))
     {
         Serial.println("ERROR: File system mount failed!");
         while (true)
