@@ -68,6 +68,7 @@ void setup()
     }
     gfx->setRotation(0);
     gfx->fillScreen(RGB565_BLACK);
+    Serial.printf("Screeen size Width=%d,Height=%d\n",gfx->width(),gfx->height());
 
     // SD card initialization
     Serial.println("SD Card initialization");
