@@ -10,6 +10,7 @@
 #define SD_SCK 18
 
 #define BOOT_PIN 0  // Boot pin
+#define BOOT_BUTTON_DEBOUCE_TIME 400 // Debounce time when reading the boot button in milliseconds
 
 #define DISPLAY_SPI_SPEED 80000000L // 80MHz
 #define SD_SPI_SPEED 80000000L // 80Mhz
@@ -191,16 +192,16 @@ void mjpegPlayFromSDCard(char *mjpegFilename)
         if (skipRequested) // pressed?
         {
             uint32_t now = millis(); // safe here
-            if (now - lastPress < 300)
-            { // 300-ms debounce window
+            if (now - lastPress < BOOT_BUTTON_DEBOUCE_TIME)
+            { 
               // ignore if it was within the debounce time
             }
             else
             {
-                lastPress = now; // accept the press
+                lastPress = now; 
             }
         }
-        skipRequested = false; // ready for next round
+        skipRequested = false; 
 
         int time_used = millis() - start_ms;
         Serial.println(F("MJPEG end"));
