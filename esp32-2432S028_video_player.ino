@@ -1,20 +1,23 @@
-#include <Arduino_GFX_Library.h>
-#include "MjpegClass.h" // Included in this project
-#include "SD.h"         // Included with the Espressif Arduino Core (last tested on v3.2.0)
+#include <Arduino_GFX_Library.h>    // Install "GFX Library for Arduino" with the Library Manager (last tested on v1.6.0)
+#include "MjpegClass.h"             // Included in this project
+#include "SD.h"                     // Included with the Espressif Arduino Core (last tested on v3.2.0)
 
+// Pins for the display
 #define BL_PIN 21
 #define SD_CS 5
 #define SD_MISO 19
 #define SD_MOSI 23
 #define SD_SCK 18
-#define BOOT_PIN 0
-#define DISPLAY_SPEED 80000000L
-#define SD_SPEED 80000000L
 
-const char *MJPEG_FOLDER = "/mjpeg";
+#define BOOT_PIN 0  // Boot pin
 
-// Storage for files to read on the SD card, adjust maximum value as needed
-#define MAX_FILES 20 // Adjust as needed
+#define DISPLAY_SPI_SPEED 80000000L // 80MHz
+#define SD_SPI_SPEED 80000000L // 80Mhz
+
+const char *MJPEG_FOLDER = "/mjpeg"; // Name of the mjpeg folder on the SD Card
+
+// Storage for files to read on the SD card
+#define MAX_FILES 20 // Maximum number of files, adjust as needed
 String mjpegFileList[MAX_FILES];
 uint32_t mjpegFileSizes[MAX_FILES] = {0}; // Store each GIF file's size in bytes
 int mjpegCount = 0;
@@ -32,9 +35,11 @@ long output_buf_size, estimateBufferSize;
 uint8_t *mjpeg_buf;
 uint16_t *output_buf;
 
+// Display global variables
 Arduino_DataBus *bus = new Arduino_HWSPI(2 /* DC */, 15 /* CS */, 14 /* SCK */, 13 /* MOSI */, 12 /* MISO */);
 Arduino_GFX *gfx = new Arduino_ILI9341(bus);
 
+// SD Card reader is on a separate SPI
 SPIClass sd_spi(VSPI);              
 
 // Interrupt to skip to the next mjpeg when the boot button is pressed
@@ -42,11 +47,11 @@ volatile bool skipRequested = false; // set in ISR, read in loop()
 volatile uint32_t isrTick = 0;       // tick count captured in ISR
 uint32_t lastPress = 0;              // used in main context for debounc
 
-// void IRAM_ATTR onButtonPress()
-// {
-//     skipRequested = true;                 // flag handled in the playback loop
-//     isrTick = xTaskGetTickCountFromISR(); // safe, 1-tick resolution
-// }
+void IRAM_ATTR onButtonPress()
+{
+    skipRequested = true;                 // flag handled in the playback loop
+    isrTick = xTaskGetTickCountFromISR(); // safe, 1-tick resolution
+}
 
 void setup()
 {
@@ -58,7 +63,7 @@ void setup()
 
     // Display initialization
     Serial.println("Display initialization");
-    if (!gfx->begin(DISPLAY_SPEED))
+    if (!gfx->begin(DISPLAY_SPI_SPEED))
     {
         Serial.println("Display initialization failed!");
         while (true)
@@ -72,7 +77,7 @@ void setup()
 
     // SD card initialization
     Serial.println("SD Card initialization");
-    if (!SD.begin(SD_CS, sd_spi, SD_SPEED, "/sd"))
+    if (!SD.begin(SD_CS, sd_spi, SD_SPI_SPEED, "/sd"))
     {
         Serial.println("ERROR: File system mount failed!");
         while (true)
@@ -107,9 +112,9 @@ void setup()
     loadMjpegFilesList();
 
     // Set the boot button to skip the current mjpeg playing and go to the next
-    // pinMode(BOOT_PIN, INPUT);                        // active‑low
-    // attachInterrupt(digitalPinToInterrupt(BOOT_PIN), // fast ISR
-    //                 onButtonPress, FALLING);         // press == LOW
+    pinMode(BOOT_PIN, INPUT);                        // active‑low
+    attachInterrupt(digitalPinToInterrupt(BOOT_PIN), // fast ISR
+                    onButtonPress, FALLING);         // press == LOW
 }
 
 void loop()
