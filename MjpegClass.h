@@ -184,7 +184,16 @@ public:
     {
       _jpeg.setPixelType(RGB565_BIG_ENDIAN);
     }
-    _jpeg.decode(_x, _y, _scale);
+    // center the image on the display
+    int iXOff, iYOff; 
+    iXOff = (_widthLimit - _jpeg.getWidth()) / 2;
+    if (iXOff < 0)
+      iXOff = 0;
+    iYOff = (_heightLimit - _jpeg.getHeight()) / 2;
+    if (iYOff < 0)
+      iYOff = 0;
+
+    _jpeg.decode(iXOff,iYOff, _scale);
     _jpeg.close();
 
     return true;
