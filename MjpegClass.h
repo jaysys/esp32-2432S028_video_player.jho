@@ -24,6 +24,10 @@
 class MjpegClass
 {
 public:
+  int getWidth() const { return _jpgWidth; }   
+  int getHeight() const { return _jpgHeight; } 
+  int getScale() const { return _scale; }      // 0, 1⁄2, 1⁄4, 1⁄8  (JPEG_SCALE_x)
+
   bool setup(
       Stream *input, uint8_t *mjpeg_buf, JPEG_DRAW_CALLBACK *pfnDraw, bool useBigEndian,
       int x, int y, int widthLimit, int heightLimit)
@@ -53,8 +57,6 @@ public:
 
   bool readMjpegBuf()
   {
-    _jpgWidth = 0;
-    _jpgHeight = 0;
     if (_inputindex == 0)
     {
       _buf_read = _input->readBytes(_read_buf, READ_BUFFER_SIZE);

@@ -1,6 +1,6 @@
-#include <Arduino_GFX_Library.h>    // Install "GFX Library for Arduino" with the Library Manager (last tested on v1.6.0)
-#include "MjpegClass.h"             // Included in this project
-#include "SD.h"                     // Included with the Espressif Arduino Core (last tested on v3.2.0)
+#include <Arduino_GFX_Library.h> // Install "GFX Library for Arduino" with the Library Manager (last tested on v1.6.0)
+#include "MjpegClass.h"          // Included in this project
+#include "SD.h"                  // Included with the Espressif Arduino Core (last tested on v3.2.0)
 
 // Pins for the display
 #define BL_PIN 21
@@ -9,11 +9,11 @@
 #define SD_MOSI 23
 #define SD_SCK 18
 
-#define BOOT_PIN 0  // Boot pin
+#define BOOT_PIN 0                   // Boot pin
 #define BOOT_BUTTON_DEBOUCE_TIME 400 // Debounce time when reading the boot button in milliseconds
 
 #define DISPLAY_SPI_SPEED 80000000L // 80MHz
-#define SD_SPI_SPEED 80000000L // 80Mhz
+#define SD_SPI_SPEED 80000000L      // 80Mhz
 
 const char *MJPEG_FOLDER = "/mjpeg"; // Name of the mjpeg folder on the SD Card
 
@@ -41,7 +41,7 @@ Arduino_DataBus *bus = new Arduino_HWSPI(2 /* DC */, 15 /* CS */, 14 /* SCK */, 
 Arduino_GFX *gfx = new Arduino_ILI9341(bus);
 
 // SD Card reader is on a separate SPI
-SPIClass sd_spi(VSPI);              
+SPIClass sd_spi(VSPI);
 
 // Interrupt to skip to the next mjpeg when the boot button is pressed
 volatile bool skipRequested = false; // set in ISR, read in loop()
@@ -74,7 +74,7 @@ void setup()
     }
     gfx->setRotation(0);
     gfx->fillScreen(RGB565_BLACK);
-    Serial.printf("Screeen size Width=%d,Height=%d\n",gfx->width(),gfx->height());
+    Serial.printf("Screeen size Width=%d,Height=%d\n", gfx->width(), gfx->height());
 
     // SD card initialization
     Serial.println("SD Card initialization");
@@ -193,15 +193,15 @@ void mjpegPlayFromSDCard(char *mjpegFilename)
         {
             uint32_t now = millis(); // safe here
             if (now - lastPress < BOOT_BUTTON_DEBOUCE_TIME)
-            { 
-              // ignore if it was within the debounce time
+            {
+                // ignore if it was within the debounce time
             }
             else
             {
-                lastPress = now; 
+                lastPress = now;
             }
         }
-        skipRequested = false; 
+        skipRequested = false;
 
         int time_used = millis() - start_ms;
         Serial.println(F("MJPEG end"));
@@ -215,6 +215,7 @@ void mjpegPlayFromSDCard(char *mjpegFilename)
         Serial.printf("Read MJPEG: %lu ms (%0.1f %%)\n", total_read_video, 100.0 * total_read_video / time_used);
         Serial.printf("Decode video: %lu ms (%0.1f %%)\n", total_decode_video, 100.0 * total_decode_video / time_used);
         Serial.printf("Show video: %lu ms (%0.1f %%)\n", total_show_video, 100.0 * total_show_video / time_used);
+        Serial.printf("Video size: %d×%d, scale=%d\n",mjpeg.getWidth(),mjpeg.getHeight(),mjpeg.getScale());
     }
 }
 
