@@ -256,6 +256,22 @@ void loadMjpegFilesList()
     // Optionally, print out each file's size for debugging:
     for (int i = 0; i < mjpegCount; i++)
     {
-        Serial.printf("File %d: %s, Size: %lu bytes\n", i, mjpegFileList[i].c_str(), mjpegFileSizes[i]);
+        Serial.printf("File %d: %s, Size: %lu bytes (%s)\n", i, mjpegFileList[i].c_str(), mjpegFileSizes[i],formatBytes(mjpegFileSizes[i]).c_str());
+    }
+}
+
+String formatBytes(size_t bytes)
+{
+    if (bytes < 1024)
+    {
+        return String(bytes) + " B";
+    }
+    else if (bytes < (1024 * 1024))
+    {
+        return String(bytes / 1024.0, 2) + " KB";
+    }
+    else
+    {
+        return String(bytes / 1024.0 / 1024.0, 2) + " MB";
     }
 }
