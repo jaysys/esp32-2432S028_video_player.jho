@@ -53,6 +53,8 @@ public:
 
   bool readMjpegBuf()
   {
+    _jpgWidth = 0;
+    _jpgHeight = 0;
     if (_inputindex == 0)
     {
       _buf_read = _input->readBytes(_read_buf, READ_BUFFER_SIZE);
@@ -147,9 +149,9 @@ public:
     {
       // scale to fit height
       int iMaxMCUs;
-      int w = _jpeg.getWidth();
-      int h = _jpeg.getHeight();
-      float ratio = (float)h / _heightLimit;
+      _jpgWidth = _jpeg.getWidth();
+      _jpgHeight = _jpeg.getHeight();
+      float ratio = (float)_jpgHeight / _heightLimit;
       if (ratio <= 1)
       {
         _scale = 0;
@@ -159,33 +161,33 @@ public:
       {
         _scale = JPEG_SCALE_HALF;
         iMaxMCUs = _widthLimit / 8;
-        w /= 2;
-        h /= 2;
+        _jpgWidth /= 2;
+        _jpgHeight /= 2;
       }
       else if (ratio <= 4)
       {
         _scale = JPEG_SCALE_QUARTER;
         iMaxMCUs = _widthLimit / 4;
-        w /= 4;
-        h /= 4;
+        _jpgWidth /= 4;
+        _jpgHeight /= 4;
       }
       else
       {
         _scale = JPEG_SCALE_EIGHTH;
         iMaxMCUs = _widthLimit / 2;
-        w /= 8;
-        h /= 8;
+        _jpgWidth /= 8;
+        _jpgHeight /= 8;
       }
       _jpeg.setMaxOutputSize(iMaxMCUs);
-      _x = (w > _widthLimit) ? 0 : ((_widthLimit - w) / 2);
-      _y = (_heightLimit - h) / 2;
+      _x = (_jpgWidth > _widthLimit) ? 0 : ((_widthLimit - _jpgWidth) / 2);
+      _y = (_heightLimit - _jpgHeight) / 2;
     }
     if (_useBigEndian)
     {
       _jpeg.setPixelType(RGB565_BIG_ENDIAN);
     }
     // center the image on the display
-    int iXOff, iYOff; 
+    int iXOff, iYOff;
     iXOff = (_widthLimit - _jpeg.getWidth()) / 2;
     if (iXOff < 0)
       iXOff = 0;
@@ -193,7 +195,7 @@ public:
     if (iYOff < 0)
       iYOff = 0;
 
-    _jpeg.decode(iXOff,iYOff, _scale);
+    _jpeg.decode(iXOff, iYOff, _scale);
     _jpeg.close();
 
     return true;
@@ -208,6 +210,8 @@ private:
   int _y;
   int _widthLimit;
   int _heightLimit;
+  int _jpgWidth;
+  int _jpgHeight;
 
   uint8_t *_read_buf;
   int32_t _mjpeg_buf_offset = 0;
