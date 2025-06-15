@@ -215,7 +215,7 @@ void mjpegPlayFromSDCard(char *mjpegFilename)
         Serial.printf("Read MJPEG: %lu ms (%0.1f %%)\n", total_read_video, 100.0 * total_read_video / time_used);
         Serial.printf("Decode video: %lu ms (%0.1f %%)\n", total_decode_video, 100.0 * total_decode_video / time_used);
         Serial.printf("Show video: %lu ms (%0.1f %%)\n", total_show_video, 100.0 * total_show_video / time_used);
-        Serial.printf("Video size: %d×%d, scale=%d\n",mjpeg.getWidth(),mjpeg.getHeight(),mjpeg.getScale());
+        Serial.printf("Video size (wxh): %d×%d, scale factor=%d\n",mjpeg.getWidth(),mjpeg.getHeight(),mjpeg.getScale());
     }
 }
 
