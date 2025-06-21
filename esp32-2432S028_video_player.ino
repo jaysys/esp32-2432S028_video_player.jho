@@ -223,7 +223,7 @@ void mjpegPlayFromSDCard(char *mjpegFilename)
     }
 }
 
-// Read the mjpeg file list in the mjpeg folder
+// Read the mjpeg file list in the mjpeg folder of the SD card
 void loadMjpegFilesList()
 {
     File mjpegDir = SD.open(MJPEG_FOLDER);
@@ -264,6 +264,7 @@ void loadMjpegFilesList()
     }
 }
 
+// Function helper display sizes on the serial monitor
 String formatBytes(size_t bytes)
 {
     if (bytes < 1024)
