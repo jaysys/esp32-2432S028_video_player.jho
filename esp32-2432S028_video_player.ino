@@ -114,10 +114,10 @@ void setup()
         }
     }
 
-    loadMjpegFilesList();
+    loadMjpegFilesList(); // Load the list of mjpeg to play from the SD card
 
     // Set the boot button to skip the current mjpeg playing and go to the next
-    pinMode(BOOT_PIN, INPUT);                        // active‑low
+    pinMode(BOOT_PIN, INPUT);                        
     attachInterrupt(digitalPinToInterrupt(BOOT_PIN), // fast ISR
                     onButtonPress, FALLING);         // press == LOW
 }
