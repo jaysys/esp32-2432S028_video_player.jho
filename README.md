@@ -12,3 +12,12 @@ ffmpeg -y -i cropped_4x3.mp4 -pix_fmt yuvj420p -q:v 7 -vf "transpose=1,fps=24,sc
 
 ## Command for a vertical video already of aspect ratio 3:4
 ffmpeg -y -i cropped.mp4 -pix_fmt yuvj420p -q:v 7 -vf "fps=24,scale=240:320:flags=lanczos" scaled.mjpeg
+
+### Options explained
+- -pix_fmt yuvj420p: Ensures JPEG-compatible pixel format
+- -q:v 7: Controls image quality (lower is better; 1 = best, 31 = worst)
+- -vf: Specifies the video filters:
+- fps=24: Extracts 24 frames per second
+- scale: Resizes the video
+- transpose=1: Rotates the video 90° clockwise
+- .mjpeg: Output format used when streaming or storing a series of JPEG frames as a video
