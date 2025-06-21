@@ -1,4 +1,8 @@
+// Tutorial : 
+// Use board "ESP32 Dev Module" (last tested on v3.2.0)
+
 #include <Arduino_GFX_Library.h> // Install "GFX Library for Arduino" with the Library Manager (last tested on v1.6.0)
+                                 // Install "JPEGDEC" with the Library Manager (last tested on v1.8.2)
 #include "MjpegClass.h"          // Included in this project
 #include "SD.h"                  // Included with the Espressif Arduino Core (last tested on v3.2.0)
 
