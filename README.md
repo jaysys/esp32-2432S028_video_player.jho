@@ -1,5 +1,19 @@
 # Cheap Yellow Display Video Player (ESP32-2432S028)
 
+<a href="https://www.buymeacoffee.com/thelastoutpostworkshop" target="_blank">
+<img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee">
+</a>
+
+## Youtube Tutorial
+[<img src="https://github.com/thelastoutpostworkshop/images/blob/main/Cheay%20Yellow%20Display-3.png" width="500">](https://youtu.be/jYcxUgxz9ks)
+
+## 🎬 How to Use These FFmpeg Commands
+
+Each of the following commands generates a `.mjpeg` file — a Motion JPEG video format — from an input `.mp4` or `.mov` video, optimized for use in frame-by-frame playback with an SD card reader.
+
+Make sure you have [FFmpeg](https://ffmpeg.org/download.html) installed and accessible from your terminal or command prompt.
+
+---
 
 ## Convert video of 16:9 (horizontal) to aspect ratio to 4:3
 ```cmd
