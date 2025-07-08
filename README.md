@@ -5,6 +5,8 @@
 </a>
 
 ## Youtube Tutorial
+>Make sure sure you have the board with the **ILI9341 Display controller** and not the ST7789 (parallel) Display controller, which is not supported by the graphics library
+
 [<img src="https://github.com/thelastoutpostworkshop/images/blob/main/Cheay%20Yellow%20Display-3.png" width="500">](https://youtu.be/jYcxUgxz9ks)
 
 ## 🎬 How to Use These FFmpeg Commands
