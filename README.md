@@ -5,7 +5,7 @@
 </a>
 
 ## Youtube Tutorial
->⚠️ Make sure sure you have the board with the **ILI9341 Display controller** — not the ST7789 (parallel) controller, which isn't supported, which isn't supported by by the graphic library [GFX Library for Arduino](https://github.com/moononournation/Arduino_GFX)
+>⚠️ Make sure sure you have the board with the **ILI9341 Display controller** — not the ST7789 (parallel) controller, which isn't supported by by the graphic library [GFX Library for Arduino](https://github.com/moononournation/Arduino_GFX)
 
 [<img src="https://github.com/thelastoutpostworkshop/images/blob/main/Cheay%20Yellow%20Display-3.png" width="500">](https://youtu.be/jYcxUgxz9ks)
 
