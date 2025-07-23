@@ -78,6 +78,7 @@ void setup()
     }
     gfx->setRotation(0);
     gfx->fillScreen(RGB565_BLACK);
+    // gfx->invertDisplay(true); // on some cheap yellow models, display must be inverted
     Serial.printf("Screeen size Width=%d,Height=%d\n", gfx->width(), gfx->height());
 
     // SD card initialization
