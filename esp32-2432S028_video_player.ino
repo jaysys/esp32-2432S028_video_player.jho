@@ -7,7 +7,7 @@
 #include "SD.h"                  // Included with the Espressif Arduino Core (last tested on v3.2.0)
 
 // Pins for the display
-#define BL_PIN 21
+#define BL_PIN 21 // On some cheap yellow display model, BL pin is 27
 #define SD_CS 5
 #define SD_MISO 19
 #define SD_MOSI 23
