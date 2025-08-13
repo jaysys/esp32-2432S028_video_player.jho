@@ -16,7 +16,11 @@
 #define BOOT_PIN 0                   // Boot pin
 #define BOOT_BUTTON_DEBOUCE_TIME 400 // Debounce time when reading the boot button in milliseconds
 
-#define DISPLAY_SPI_SPEED 80000000L // 80MHz
+// Some model of cheap Yellow display works only at 40Mhz
+// #define DISPLAY_SPI_SPEED 40000000L // 40MHz 
+#define DISPLAY_SPI_SPEED 80000000L // 80MHz 
+
+
 #define SD_SPI_SPEED 80000000L      // 80Mhz
 
 const char *MJPEG_FOLDER = "/mjpeg"; // Name of the mjpeg folder on the SD Card

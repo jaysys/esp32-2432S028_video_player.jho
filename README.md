@@ -9,6 +9,11 @@
 
 [<img src="https://github.com/thelastoutpostworkshop/images/blob/main/Cheay%20Yellow%20Display-3.png" width="500">](https://youtu.be/jYcxUgxz9ks)
 
+## Notes
+> Some model of Cheap Yellow Display works only at speed of 40Mhz, change the DISPLAY_SPI_SPEED to 40000000L:
+```cmd
+#define DISPLAY_SPI_SPEED 40000000L // 40MHz 
+```
 ## 🎬 How to Use These FFmpeg Commands
 
 Each of the following commands generates a `.mjpeg` file — a Motion JPEG video format — from an input `.mp4` or `.mov` video, optimized for use in frame-by-frame playback with an SD card reader.
