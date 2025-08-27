@@ -41,6 +41,12 @@ ffmpeg -y -i cropped_4x3.mp4 -pix_fmt yuvj420p -q:v 7 -vf "transpose=1,fps=24,sc
 ffmpeg -y -i cropped.mp4 -pix_fmt yuvj420p -q:v 7 -vf "fps=24,scale=240:320:flags=lanczos" scaled.mjpeg
 ```
 
+## Example To reduce brightness of the output video (helps with bright colors)
+see [issue 7](https://github.com/thelastoutpostworkshop/esp32-2432S028_video_player/issues/7)
+```cmd
+ffmpeg -y -i "input.mp4" -q:v 6 -filter:v "scale=-1:ih/2,eq=brightness=-0.05" -c:v mjpeg -an "output.mjpeg"
+```
+
 ### Options explained
 - -pix_fmt yuvj420p: Ensures JPEG-compatible pixel format
 - -q:v 7: Controls image quality (lower is better; 1 = best, 31 = worst)
@@ -48,4 +54,5 @@ ffmpeg -y -i cropped.mp4 -pix_fmt yuvj420p -q:v 7 -vf "fps=24,scale=240:320:flag
 - fps=24: Extracts 24 frames per second
 - scale: Resizes the video
 - transpose=1: Rotates the video 90° clockwise
+- eq: Applies an equalizer filter to slightly darken the video. Values range from -1.0 to 1.0.
 - .mjpeg: Output format used when streaming or storing a series of JPEG frames as a video
