@@ -3,17 +3,7 @@
 
 Get the Cheap Yellow Display:
 ⚠️ Make sure you get the board ESP32-2432S028 with the ILI9341 display controller — not the ST7789 (parallel) controller, which isn't supported by the graphics library.
-Aliexpress: https://s.click.aliexpress.com/e/_oCV...
-Amazon: https://amzn.to/4kAyDJh
-
-Micro SD Card 32GB: https://amzn.to/45oeGkK
-
-Get the Code :
-https://github.com/thelastoutpostwork...
-
-ESP32 boards link for the IDE : https://espressif.github.io/arduino-e...
-SD Card Formatter : https://www.sdcard.org/downloads/form...
-FFmpeg: https://www.ffmpeg.org/
+- Aliexpress: [https://s.click.aliexpress.com/e/_oCV...](https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbVZFM0t4LTVTX3pMVTNKQ2N0YUF2ckRha3NKUXxBQ3Jtc0tsNFVGbmViSWZhTmZzNUlTbTNFbDlmbFBIdVBJVE9QZnc2MFphc2RwMmkwRkhQdjdsX1UybGhDVXB3RzMwcnpDVE5NNDNUdlQtSnpORWFQeXg3cHJmLXdqLW5FRzVQYkhSMXZscVM3WGo4ZmhsQ2tIbw&q=https%3A%2F%2Fs.click.aliexpress.com%2Fe%2F_oCVWMbC&v=jYcxUgxz9ks)
 
 
 ## Youtube Tutorial
