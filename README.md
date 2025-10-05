@@ -1,8 +1,20 @@
 # Cheap Yellow Display Video Player (ESP32-2432S028)
 
-<a href="https://www.buymeacoffee.com/thelastoutpostworkshop" target="_blank">
-<img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee">
-</a>
+
+Get the Cheap Yellow Display:
+⚠️ Make sure you get the board ESP32-2432S028 with the ILI9341 display controller — not the ST7789 (parallel) controller, which isn't supported by the graphics library.
+Aliexpress: https://s.click.aliexpress.com/e/_oCV...
+Amazon: https://amzn.to/4kAyDJh
+
+Micro SD Card 32GB: https://amzn.to/45oeGkK
+
+Get the Code :
+https://github.com/thelastoutpostwork...
+
+ESP32 boards link for the IDE : https://espressif.github.io/arduino-e...
+SD Card Formatter : https://www.sdcard.org/downloads/form...
+FFmpeg: https://www.ffmpeg.org/
+
 
 ## Youtube Tutorial
 >⚠️ Make sure you have the board model ESP32-2432S028 with the **ILI9341 Display controller** — not the ST7789 (parallel) controller, which isn't supported by the graphic library [GFX Library for Arduino](https://github.com/moononournation/Arduino_GFX)
